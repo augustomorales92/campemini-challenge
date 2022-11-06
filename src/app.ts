@@ -26,7 +26,7 @@ app.use('/clients', clients);
 app.use(errorHandler);
 app.get('*', noRoutedMatched);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`linsten on port ${process.env.PORT}`);
 });
 
