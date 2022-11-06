@@ -9,10 +9,11 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node dist/app.js",
-    "postinstall": "npm run build",
+    "postinstall": "tsc",
     "watch": "nodemon -e ts -w ./src -x npm run watch:serve",
     "watch:serve": "ts-node  src/app.ts",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "author": "augusto morales",
   "license": "ISC",
