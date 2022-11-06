@@ -13,7 +13,7 @@
     "watch": "nodemon -e ts -w ./src -x npm run watch:serve",
     "watch:serve": "ts-node  src/app.ts",
     "test:watch": "jest --watch",
-    "deploy": "git add . && git commit -m Heroku && git push heroku main"
+    "deploy": "git add . && git commit -m Heroku && git push main"
   },
   "author": "augusto morales",
   "license": "ISC",
