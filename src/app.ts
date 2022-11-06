@@ -18,6 +18,9 @@ app.use(bodyParser.json());
 app.use(cors())
 app.use(morgan('tiny'));
 
+app.get("/", (req, res) => {
+  res.redirect(301, '/api-docs');
+});
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/authenticate', authenticate);
 app.use('/policies', policies);
