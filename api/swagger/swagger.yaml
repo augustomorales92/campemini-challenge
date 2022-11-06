@@ -153,7 +153,7 @@ paths:
                 role:
                   type: string
                   example: admin
-  /policies/user/{policyNumber}:
+  /policies/client/{policyNumber}:
     get:
       summary: Returns a client associated to policiy number.
       security:

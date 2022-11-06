@@ -38,7 +38,7 @@ router.get(
 
   // GET USER LINKED TO A POLICY NUMBER
   router.get(
-    '/user/:policyNumber',
+    '/client/:policyNumber',
     async (req: Request, res: Response, next: NextFunction) => {
       const { policyNumber } = req.params;
       try {
