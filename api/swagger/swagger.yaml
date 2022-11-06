@@ -1,0 +1,197 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "challenge campgemini"
+host: localhost:3000
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  OAuth2:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://example.com/oauth/authorize
+    tokenUrl: https://example.com/oauth/token
+
+paths:
+  /authenticate:
+    post:
+      summary: authenticate user
+      parameters:
+       - in: body
+         name: auth
+         required: true
+         schema:
+          type: object
+          properties:
+           email:
+            type: string
+           name:
+            type: string
+          example:
+            name: augusto
+            email: augusto@mail.com
+      responses:
+        200:
+          description: OK
+        400:
+          description: Email or Name is incorrect
+  /clients/clientId/{clientId}:
+    get:
+      summary: Returns a client by ID.
+      security:
+        - OAuth2: []
+      parameters:
+        - in: path
+          name: clientId
+          required: true
+          type: string
+          description: client id 
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+          description: "Bearer ${token}"
+      responses:
+       200:
+          description: OK
+          schema:
+            type: object
+            properties:
+             email:
+              type: string
+              example: augusto@mail.com
+             id:
+              type: string  
+              example: a0ece5db-cd14-4f21-812f-966633e7be86
+             name:
+              type: string
+              example: augusto
+             role:
+              type: string
+              example: admin
+       404:
+          description: Client not found
+  /clients/clientName/{clientName}:
+    get:
+      summary: Returns a client by Name.
+      security:
+        - OAuth2: []
+      parameters:
+        - in: path
+          name: clientName
+          required: true
+          type: string
+          description: client name
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+          description: "Bearer ${token}"
+      responses:
+       200:
+          description: OK
+          schema:
+            type: object
+            properties:
+             email:
+              type: string
+              example: augusto@mail.com
+             id:
+              type: string  
+              example: a0ece5db-cd14-4f21-812f-966633e7be86
+             name:
+              type: string
+              example: augusto
+             role:
+              type: string
+              example: admin
+       404:
+          description: Client not found
+  /policies/{clientName}:
+    get:
+      summary: Returns policies by clientName
+      security:
+        - OAuth2: []
+      parameters:
+        - in: path
+          name: clientName
+          required: true
+          description: client name
+          type: string
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+          description: "Bearer ${token}"
+      responses:
+       404:
+          description: Client not found
+       204:
+          description: associated policies not found
+       200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: augusto@mail.com
+                id:
+                  type: string  
+                  example: a0ece5db-cd14-4f21-812f-966633e7be86
+                name:
+                  type: string
+                  example: augusto
+                role:
+                  type: string
+                  example: admin
+  /policies/user/{policyNumber}:
+    get:
+      summary: Returns a client associated to policiy number.
+      security:
+        - OAuth2: []
+      parameters:
+        - in: path
+          name: policyNumber
+          required: true
+          type: string
+          description: policy number
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+          description: "Bearer ${token}"
+      responses:
+       200:
+          description: OK
+          schema:
+            type: object
+            properties:
+             email:
+              type: string
+              example: augusto@mail.com
+             id:
+              type: string  
+              example: a0ece5db-cd14-4f21-812f-966633e7be86
+             name:
+              type: string
+              example: augusto
+             role:
+              type: string
+              example: admin
+            
+            
+            
+            
+            
+            
+            
+            
+            
