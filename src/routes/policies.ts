@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { getClients, getPolicies } from '../helpers/utils';
 import { TClient, TPolicy } from '../types';
-import authorize from '../helpers/authorize';
+import { authorize } from '../helpers/authorize';
 import { adminRol } from '../helpers/roles';
 
 const router = express.Router();

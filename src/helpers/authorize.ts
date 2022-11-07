@@ -4,7 +4,7 @@ import { Response, NextFunction, Request } from 'express';
 import { secret } from './utils';
 
 
-const authorize = (roles: string[] | string) => {
+export const authorize = (roles: string[] | string) => {
   const formatedRoles: string[] = typeof roles === 'string' ? [roles] : roles;
   return [
     expressjwt({ secret, algorithms: ['HS256'] }),
@@ -18,4 +18,3 @@ const authorize = (roles: string[] | string) => {
   ];
 };
 
-export default authorize;

@@ -2,12 +2,12 @@ import express, { Request, Response, NextFunction } from 'express';
 
 import { getClients } from '../helpers/utils';
 import { TClient } from '../types';
-import authorize from '../helpers/authorize';
+import { authorize } from '../helpers/authorize';
 import { allRoles } from '../helpers/roles';
 
 const router = express.Router();
 
-router.all('/*',authorize(allRoles))
+router.all('/*', authorize(allRoles));
 // GET USER BY USERID
 router.get(
   '/clientId/:id',
