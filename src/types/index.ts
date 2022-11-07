@@ -18,3 +18,7 @@ export type TClient = {
 export interface IAuth extends Request {
   auth?: Record<string,any>
 }
+export interface IFetch extends Request {
+  clients?: TClient[]
+  policies?: TPolicy[]
+}
