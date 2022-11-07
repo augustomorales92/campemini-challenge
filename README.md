@@ -1,3 +1,5 @@
+**BASEURL** : `https://challenge-campemini.herokuapp.com/`
+
 # Authenticate
 
 **URL** : `/authenticate`
