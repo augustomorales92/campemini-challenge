@@ -1,4 +1,4 @@
-**BASEURL** : `https://challenge-campemini.herokuapp.com/`
+**BASEURL** : `https://challenge-capgemini.herokuapp.com/`
 
 # Authenticate
 
