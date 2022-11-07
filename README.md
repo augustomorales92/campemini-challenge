@@ -61,7 +61,7 @@
 
 **Auth required** : YES
 
-**Permissions required** : `[admin|user]`
+**Permissions required** : `[admin | user]`
 
 ## Success Response
 
@@ -92,7 +92,7 @@ For a User with ID a0ece5db-cd14-4f21-812f-966633e7be86 in the local database.
 
 **Auth required** : YES
 
-**Permissions required** : `[admin|user]`
+**Permissions required** : `[admin | user]`
 
 ## Success Response
 
