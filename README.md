@@ -61,7 +61,7 @@
 
 **Auth required** : YES
 
-**Permissions required** : None
+**Permissions required** : [admin|user]
 
 ## Success Response
 
@@ -69,7 +69,7 @@
 
 **Content examples**
 
-For a User with ID a0ece5db-cd14-4f21-812f-966633e7be86 on the local database.
+For a User with ID a0ece5db-cd14-4f21-812f-966633e7be86 in the local database.
 
 ```json
   {  
@@ -86,13 +86,13 @@ For a User with ID a0ece5db-cd14-4f21-812f-966633e7be86 on the local database.
 
 **URL** : `/clients/clientName/:name`
 
-**URL Parameters** : `name=[string] where name is the name`
+**URL Parameters** : `name=[string] where name is the client name`
 
 **Method** : `GET`
 
 **Auth required** : YES
 
-**Permissions required** : None
+**Permissions required** : [admin|user]
 
 ## Success Response
 
@@ -100,7 +100,7 @@ For a User with ID a0ece5db-cd14-4f21-812f-966633e7be86 on the local database.
 
 **Content examples**
 
-For a User with name Britney on the local database.
+For a User with name Britney in the local database.
 
 ```json
   {  
@@ -122,7 +122,7 @@ For a User with name Britney on the local database.
 
 **Auth required** : YES
 
-**Permissions required** : None
+**Permissions required** : [admin]
 
 ## Success Response
 
@@ -130,7 +130,7 @@ For a User with name Britney on the local database.
 
 **Content examples**
 
-For a User with name Britney on the local database.
+For a User with name Britney in the local database.
 
 ```json
 [
@@ -153,7 +153,7 @@ For a User with name Britney on the local database.
 ]
 ```
 
-# Get policies associated to a client by client name
+# Get client associated to a policy by policy number
 
 
 **URL** : `/policies/client/:policyNumber`
@@ -164,7 +164,7 @@ For a User with name Britney on the local database.
 
 **Auth required** : YES
 
-**Permissions required** : None
+**Permissions required** : [admin]
 
 ## Success Response
 
@@ -172,7 +172,7 @@ For a User with name Britney on the local database.
 
 **Content examples**
 
-For a policy with id 92d15f67-h71b-44fd-95s1-eb1gfg19dsfce on the local database.
+For a policy with id 92d15f67-h71b-44fd-95s1-eb1gfg19dsfce in the local database.
 
 ```json
 [
