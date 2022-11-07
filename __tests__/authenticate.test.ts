@@ -1,8 +1,13 @@
 import app from '../src/app';
 import request from 'supertest';
-import { describe, it } from '@jest/globals';
+import { describe, it , afterAll} from '@jest/globals';
 import { expect } from 'chai';
+import server from '../src/app';
 
+
+afterAll(async() => {
+  await server.close();
+  });
 
 describe('authentication tests', () => {
   it('success authentication', (done) => {

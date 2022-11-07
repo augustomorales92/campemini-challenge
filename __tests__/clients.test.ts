@@ -1,7 +1,8 @@
 import app from '../src/app';
 import request from 'supertest';
-import { describe, it, beforeAll } from '@jest/globals';
+import { describe, it, beforeAll, afterAll } from '@jest/globals';
 import { expect } from 'chai';
+import server from '../src/app';
 
 const adminClient = {
   id: 'a0ece5db-cd14-4f21-812f-966633e7be86',
@@ -15,6 +16,10 @@ const userClient = {
   email: 'barnettblankenship@quotezart.com',
   role: 'user',
 };
+
+afterAll(async() => {
+  await server.close();
+  });
 
 let adminToken: string, userToken: string;
 beforeAll(async () => {
@@ -32,6 +37,7 @@ beforeAll(async () => {
   const jsonUser = JSON.parse(textUser);
   userToken = jsonUser.token;
 });
+
 
 describe('GET clients by id', () => {
   it('should receive 401 when client is not authenticated', (done) => {

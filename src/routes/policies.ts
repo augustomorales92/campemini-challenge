@@ -29,7 +29,7 @@ router.get(
 
       policiesRes.length
         ? res.send(policiesRes)
-        : res.status(204).send({ message: 'associated policies not found' });
+        : res.status(404).send({ message: 'associated policies not found' });
     } catch (e) {
       next(e);
     }

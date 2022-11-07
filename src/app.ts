@@ -29,8 +29,8 @@ app.use('/clients', clients);
 app.use(errorHandler);
 app.get('*', noRoutedMatched);
 
-app.listen(process.env.PORT || 3000, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`linsten on port ${process.env.PORT}`);
 });
 
-export default app;
+export default server;

@@ -1,7 +1,8 @@
 import app from '../src/app';
 import request from 'supertest';
-import { describe, it, beforeAll } from '@jest/globals';
+import { describe, it, beforeAll, afterAll } from '@jest/globals';
 import { expect } from 'chai';
+import server from '../src/app';
 
 const adminClient = {
   id: 'a0ece5db-cd14-4f21-812f-966633e7be86',
@@ -15,6 +16,11 @@ const userClient = {
   email: 'barnettblankenship@quotezart.com',
   role: 'user',
 };
+
+afterAll(async() => {
+  await server.close();
+  });
+
 
 
 let adminToken: string, userToken: string;
@@ -34,6 +40,7 @@ beforeAll(async () => {
   userToken = jsonUser.token;
 });
 
+
 describe('GET policies by client name ', () => {
   it('should receive 401 when client is not authenticated', (done) => {
     request(app)
@@ -51,12 +58,12 @@ describe('GET policies by client name ', () => {
     request(app)
     .get('/policies/Whitley')
       .set('Authorization', `Bearer ${adminToken}`)
-      .expect(204)
+      .expect(404)
       .expect((response) => {
         const text = response.text;
         const json = JSON.parse(text);
         expect(json.message).to.equal('associated policies not found');
-        expect(response.statusCode).to.equal(204);
+        expect(response.statusCode).to.equal(404);
       })
       .end(done);
   });
@@ -104,7 +111,7 @@ describe('GET policies by client name ', () => {
  describe('GET clients name associated to a policy number', () => {
   it('should receive 401 when client is not authenticated', (done) => {
     request(app)
-      .get('/policies/user/64cceef9-3a01-49ae-a23b-3761b604800b')
+      .get('/policies/client/64cceef9-3a01-49ae-a23b-3761b604800b')
       .expect(401)
       .expect((response) => {
         const text = response.text;
@@ -114,9 +121,9 @@ describe('GET policies by client name ', () => {
       })
       .end(done);
   });
-  it('should receive a message when clients have no associated policies', (done) => {
+  it('should receive a client data when clients have associated policy', (done) => {
     request(app)
-    .get('policies/user/64cceef9-3a01-49ae-a23b-3761b604800b')
+    .get('/policies/client/64cceef9-3a01-49ae-a23b-3761b604800b')
       .set('Authorization', `Bearer ${adminToken}`)
       .expect(200)
       .expect((response) => {
@@ -129,7 +136,7 @@ describe('GET policies by client name ', () => {
   });
   it('should receive 403 when client is user role', (done) => {
     request(app)
-    .get('/policies/user/64cceef9-3a01-49ae-a23b-3761b604800b')
+    .get('/policies/client/64cceef9-3a01-49ae-a23b-3761b604800b')
       .set('Authorization', `Bearer ${userToken}`)
       .expect(403)
       .expect((response) => {
@@ -140,9 +147,9 @@ describe('GET policies by client name ', () => {
       })
       .end(done);
   });
-  it('should receive 404 when client not exist', (done) => {
+  it('should receive 404 when policy not exist', (done) => {
     request(app)
-    .get('/policies/user/64cceef9-3a01-49ae-at23v-3761b604800b')
+    .get('/policies/client/64cceef9-3a01-49ae-at23v-3761b604800b')
       .set('Authorization', `Bearer ${adminToken}`)
       .expect(404)
       .expect((response) => {
